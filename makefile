@@ -7,13 +7,13 @@ $(SCALED_DATASET):
 	python prepare_data.py "$(DATA_DIRECTORY)/$(GENE)/X_matrix.tsv" "$(DATA_DIRECTORY)/$(GENE)/Y_matrix.tsv" $(SCALED_DATASET)
 
 # Create final configuration file.
-final_config.yaml: create_input_features.py base_config.yaml
-	python create_input_features.py "$(DATA_DIRECTORY)/$(GENE)/X_matrix.tsv" input_features.yaml; cat input_features.yaml base_config.yaml > final_config.yaml
+$(GENE)_final_config.yaml: create_input_features.py base_config.yaml
+	python create_input_features.py "$(DATA_DIRECTORY)/$(GENE)/X_matrix.tsv" $(GENE)_input_features.yaml; cat $(GENE)_input_features.yaml base_config.yaml > $(GENE)_final_config.yaml
 
-# Run a ludwig experiment using the scaled dataset.
-ludwig-experiment: final_config.yaml $(SCALED_DATASET)
-	ludwig experiment --dataset $(SCALED_DATASET) --config_file final_config.yaml
+# Run a ludwig experiment using the scaled dataset. Results are placed into the $(GENE) directory.
+ludwig-experiment: $(GENE)_final_config.yaml $(SCALED_DATASET)
+	mkdir -p $(GENE) && pushd $(GENE) && ludwig experiment --dataset ../$(SCALED_DATASET) --config_file ../$(GENE)_final_config.yaml -rs 456
 
 clean:
-	rm final_config.yaml *_scaled_dataset.tsv
+	rm *_final_config.yaml *_scaled_dataset.tsv
 
