@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Project-specific files.
+final_config.yaml
+input_features.yaml

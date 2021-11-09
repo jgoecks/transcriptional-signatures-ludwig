@@ -1,0 +1,7 @@
+output_features:
+  - name: Class
+    type: category
+training:
+  early_stop: 9
+
+    
