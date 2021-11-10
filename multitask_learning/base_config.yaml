@@ -1,0 +1,11 @@
+output_features:
+  - name: TP53_Class
+    type: category
+  - name: CDKN2A_Class
+    type: category
+  - name: PIK3CA_Class
+    type: category
+training:
+  early_stop: 10
+
+    

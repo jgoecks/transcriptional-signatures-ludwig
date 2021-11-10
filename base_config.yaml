@@ -2,6 +2,6 @@ output_features:
   - name: Class
     type: category
 training:
-  early_stop: 9
+  early_stop: 10
 
     

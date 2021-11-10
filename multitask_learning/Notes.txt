@@ -1,0 +1,11 @@
+1. Use notebook to create subsetted X matrix and final y matrix
+2. Create final_config.yaml:
+    python ../create_input_features.py X_matrix_subset.tsv input_features.yaml; cat input_features.yaml base_config.yaml > final_config.yaml
+3. Prepare data:
+    python ../prepare_data.py X_matrix_subset.tsv y_matrix.tsv combined.tsv
+4. Run Ludwig:
+    ludwig experiment --dataset combined.tsv --config_file final_config.yaml -rs 456
+
+
+TODO:
+- automate creation of output features from y_matrix.tsv
