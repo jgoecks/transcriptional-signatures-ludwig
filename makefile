@@ -15,5 +15,5 @@ ludwig-experiment: $(GENE)_final_config.yaml $(SCALED_DATASET)
 	mkdir -p $(GENE) && pushd $(GENE) && ludwig experiment --dataset ../$(SCALED_DATASET) --config_file ../$(GENE)_final_config.yaml -rs 456
 
 clean:
-	rm *_final_config.yaml *_scaled_dataset.tsv
+	rm $(GENE)_final_config.yaml $(GENE)_scaled_dataset.tsv
 
