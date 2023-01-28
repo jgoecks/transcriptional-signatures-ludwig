@@ -12,7 +12,7 @@ $(GENE)_final_config.yaml: create_input_features.py base_config.yaml
 
 # Run a ludwig experiment using the scaled dataset. Results are placed into the $(GENE) directory.
 ludwig-experiment: $(GENE)_final_config.yaml $(SCALED_DATASET)
-	mkdir -p $(GENE) && pushd $(GENE) && ludwig experiment --dataset ../$(SCALED_DATASET) --config_file ../$(GENE)_final_config.yaml -rs 456
+	mkdir -p $(GENE) && pushd $(GENE) && ludwig experiment --dataset ../$(SCALED_DATASET) --config ../$(GENE)_final_config.yaml -rs 456
 
 clean:
 	rm $(GENE)_final_config.yaml $(GENE)_scaled_dataset.tsv
